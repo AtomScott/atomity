@@ -1,3 +1,4 @@
+from time import time
 from contextlib import contextmanager
 import sys, os
 
@@ -20,3 +21,22 @@ def suppress_stdout():
             yield
         finally:
             sys.stdout = old_stdout
+
+@contextmanager
+def timing(description: str = 'Time') -> None:
+    """[summary]
+    
+    Parameters
+    ----------
+    description : str, optional
+        [description], by default 'Time'
+
+    Example
+    -------
+    with timing:
+        _ = [1+1 for _ in range(10**5)]
+    """
+    start = time()
+    yield 
+    ellapsed_time = time() - start
+    print(f'{description}: {ellapsed_time}')

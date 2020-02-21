@@ -1,1 +1,1 @@
-from atomity import *
+from .atomity import *

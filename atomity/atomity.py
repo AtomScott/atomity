@@ -1,6 +1,9 @@
 from time import time
 from contextlib import contextmanager
 import sys, os
+import ipywidgets as wgt
+from IPython.display import Image, display
+
 
 @contextmanager
 def suppress_stdout():
@@ -40,3 +43,9 @@ def timing(description: str = 'Time') -> None:
     yield 
     ellapsed_time = time() - start
     print(f'{description}: {ellapsed_time}')
+
+
+def browse_images(paths):
+    def view_image(image_path):
+        display(Image(image_path))
+    return wgt.interact(view_image, image_path=paths)
